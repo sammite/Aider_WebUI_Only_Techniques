@@ -1,10 +1,11 @@
-# aider_dockerized_enhancements
-Just my personal mods to the docker version of aider
+#!/bin/bash
 
-run with:
-
-
-```
+SYSTEM_PROMPT="
+\"Do not edit the files directly. Instead, write the delivered .patch file contents
+to swap_diff.patch and then run the following command to merge the differences.
+patch <FILE> swap_diff.patch
+Then, zero out the swap_diff.patch file.\"
+"
 
 sudo docker run -it \
     --user $(id -u):$(id -g) \
@@ -17,9 +18,5 @@ sudo docker run -it \
     --no-check-update \
     --model ollama_chat/qwen3:1.7b \
     --copy-paste \
-    --message $SYSTEM_PROMPT
+    --message $SYSTEM_PROMPT \
     --edit-format editor-diff
-
-```
-
-in conjunction with locallama to properly copy paste in and out of a docker. 
