@@ -1,2 +1,4 @@
 .aider*
 .bash_history
+*.orig
+*.gitconfig
