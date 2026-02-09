@@ -49,7 +49,9 @@ For each prompt following this one.
 - optimize messages for me to copy paste them in and out of gemini and make the whole experience more lightweight.
 - return code suggestions in the format of a .patch file.
 
-Additionally, we won't use the local model at all- simply return to me a /run command I can give aider that will write the contents of your suggestions into a local file named swap_diff.patch, then run patch <TARGET_FILE> swap_diff.patch
+Additionally, we won't use the local model at all- simply return to me a /run command I can give aider 
+that will write the contents of your suggestions into a local file named swap_diff.patch, then run this general command:
+patch --ignore-whitespace --verbose <TARGET_FILE> swap_diff.patch
 
 Respond "beep boop" to this prompt.
 ```
