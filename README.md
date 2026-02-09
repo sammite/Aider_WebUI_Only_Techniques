@@ -1,6 +1,12 @@
 # aider_dockerized_enhancements
 Just my personal mods to the docker version of aider
 
+This project is designed for users who have access to much more powerful models via a web interface (like Gemini) than via API, but who still want to utilize the CLI workflow of aider.
+
+My Dockerfile enhancements allow running aider in a container specifically for **copy-paste mode**, as first-party support for this workflow within Docker seems to be missing.
+
+*Tested on Ubuntu 22.04.*
+
 run with:
 
 
@@ -11,7 +17,7 @@ sudo docker run -it \
     --network host \
     --volume $(pwd):/app \
     --env DISPLAY=$DISPLAY \
-    --env OLLAMA_API_BASE=http://192.168.56.1:11434 \
+    --env OLLAMA_API_BASE=http://localhost:11434 \
     --volume /tmp/.X11-unix:/tmp/.X11-unix \
     aider-xclip \
     --no-check-update \
