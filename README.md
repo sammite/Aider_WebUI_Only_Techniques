@@ -73,7 +73,7 @@ This is because the actual commands we need minimum- `/copy-context` and `/run` 
 
 ```text
 this chat is a coding project in conjunction with the tool aider in copy-paste mode.
-Additionally, the actual driver of the edits is qwen2.5-coder:3b, which is a small and not very powerful model.
+The actual driver of the edits is qwen2.5-coder:3b, which is a small and not very powerful model.
 For each prompt following this one.
 - minimize total token response to reduce potential context problems.
 - optimize messages for me to copy paste them in and out of gemini and make the whole experience more lightweight.
@@ -81,7 +81,10 @@ For each prompt following this one.
 
 Additionally, we won't use the local model at all- simply return to me a /run command I can give aider 
 that will write the contents of your suggestions into a local file named swap_diff.patch, then run this general command:
+
+
 patch --ignore-whitespace --verbose <TARGET_FILE> swap_diff.patch
+
 The totality of the command you return should be in `markdown` for easy plaintext copy and pasting.
 
 Respond "beep boop" to this prompt.
@@ -96,6 +99,14 @@ which is probably a good thing, and there may be a simple way around it (other t
 The model you use via the webui sometimes doesn't return a valid diff- you will start to notice what needs an extra prompt pretty quickly if you 
 play with this long enough though!
 
+
+## security implications
+
+This is ripe for a prompt inject. By definition you're taking input from the web llm and pasting it into a run command.
+In theory, that means your web ui llm could be indirectly prompt injected into doing something nefarious.
+Actual risk profile is going to be pretty heavily dependent on how you use the tools involved. I strongly recommend nested sandboxes and running the 
+dockerized aider with privileges dropped and stuff like that. Defanging binaries is probably another good practice I may add to my buildout at some point, 
+but at the same time there is only so much you can do with stuff like this while maintaining it's actual value proposition.
 
 ## why?
 
